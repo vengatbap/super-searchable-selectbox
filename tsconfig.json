@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+      "target": "ES6",                // Target ECMAScript version
+      "module": "ESNext",              // Use ESNext module resolution
+      "declaration": true,             // Generate type declarations
+      "declarationDir": "./dist",      // Output directory for declaration files
+      "outDir": "./dist",              // Output directory for compiled files
+      "jsx": "react-jsx",              // Enable JSX for React (for React 17+)
+      "moduleResolution": "node",      // Use Node module resolution strategy
+      "esModuleInterop": true,         // Allow import of CommonJS modules
+      "skipLibCheck": true,            // Skip type checking of library files
+      "strict": true,                  // Enable all strict type checks
+      "forceConsistentCasingInFileNames": true, // Ensure consistent casing
+      "sourceMap": true,               // Generate source maps for debugging
+      "resolveJsonModule": true,       // Allow importing JSON files
+      "isolatedModules": true,         // Ensure each file is treated as a module
+      "types": ["react", "node"],      // Include React and Node types
+      "lib": ["dom", "dom.iterable", "esnext"] // Add DOM and ESNext library support
+    },
+    "include": ["src/**/*"],            // Include all TypeScript files in the src directory
+    "exclude": ["node_modules", "dist"] // Exclude build and dependency directories
+  }
+  
