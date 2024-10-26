@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, CSSProperties } from 'react';
+import './styles/style.scss'; // Import SCSS styles
+import './styles/style.css'; // Import CSS styles
 
-// TypeScript Interfaces
 export interface User {
   id: number;
   name: string;
@@ -29,7 +30,6 @@ export interface UserDropdownProps {
   dropdownSize?: DropdownSize;
 }
 
-// Size Mapping
 const sizeMap: Record<DropdownSize, CSSProperties> = {
   xs: { width: '150px', maxHeight: '150px' },
   sm: { width: '200px', maxHeight: '200px' },
@@ -72,60 +72,70 @@ const UserDropdown: React.FC<UserDropdownProps> = ({
   };
 
   const renderAvatar = (user: User) =>
-    showAvatar && user.avatar ? (
-      <img className="w-8 h-8 rounded-full" src={user.avatar} alt={`${user.name} avatar`} />
-    ) : (
-      <div className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-600 text-white">
-        {user.name[0].toUpperCase()}
+    showAvatar ? (
+      <div className="super-selectbox-avatar">
+        {user.avatar ? (
+          <img src={user.avatar} alt={`${user.name} avatar`} />
+        ) : (
+          <span>{user.name[0]}</span>
+        )}
       </div>
-    );
+    ) : null;
 
   const filteredTeams = teams.map((team) => ({
     ...team,
-    members: team.members.filter((user) => user.name.toLowerCase().includes(search.toLowerCase())),
+    members: team.members.filter((user) =>
+      user.name.toLowerCase().includes(search.toLowerCase())
+    ),
   }));
 
   const selectedUser = teams.flatMap((team) => team.members).find((user) => user.id === selectedUserId);
 
   return (
-    <div className="relative" ref={dropdownRef}>
-      <button onClick={toggleDropdown} className="border px-4 py-2 rounded">
+    <div className="super-selectbox" ref={dropdownRef}>
+
+      <button onClick={toggleDropdown} className="super-selectbox-togglr">
         {selectedUser ? selectedUser.name : 'Unassigned'}
       </button>
 
       {isOpen && (
         <div
-          className={`z-10 bg-white rounded-lg shadow absolute ${dropdownPosition}`}
+          className={`super-selectbox-dropdown ${dropdownPosition}`}
           style={sizeMap[dropdownSize]}
         >
           <div className="p-3">
             <input
               type="text"
-              className="block w-full p-2 text-sm border rounded-lg"
+              className="block w-full p-2 border rounded"
               placeholder="Search users"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
 
-          <ul className="overflow-y-auto custom-scrollbar">
+          <ul className="overflow-y-auto">
             <li>
-              <button onClick={() => handleSelect(null)} className={`px-4 py-2 ${selectedUserId === null ? 'bg-blue-600 text-white' : ''}`}>
+              <button
+                onClick={() => handleSelect(null)}
+                className={`super-selectbox-item ${selectedUserId === null ? 'selected' : ''}`}
+              >
                 Unassigned
               </button>
             </li>
 
             {filteredTeams.map((team) => (
               <React.Fragment key={team.id}>
-                {showTitle && <li className="px-4 py-2 font-semibold">{team.name}</li>}
+                {showTitle && <li className="super-selectbox-title">{team.name}</li>}
                 {team.members.map((user) => (
                   <li key={user.id}>
                     <button
                       onClick={() => handleSelect(user)}
-                      className={`px-4 py-2 ${selectedUserId === user.id ? 'bg-blue-600 text-white' : ''}`}
+                      className={`super-selectbox-item ${
+                        selectedUserId === user.id ? 'selected' : ''
+                      }`}
                     >
                       {renderAvatar(user)}
-                      <span className="ml-2">{user.name}</span>
+                      <span>{user.name}</span>
                     </button>
                   </li>
                 ))}

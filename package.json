@@ -1,8 +1,8 @@
 {
   "name": "super-searchable-selectbox",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A customizable, searchable, and lightweight dropdown component for React.",
-  "main": "dist/test.js",
+  "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "repository": {
@@ -11,29 +11,40 @@
   },
   "author": "Vengatesan Boominathan",
   "license": "MIT",
-  "keywords": ["react", "dropdown", "select", "searchable", "typescript", "component"],
+  "keywords": [
+    "react",
+    "dropdown",
+    "select",
+    "searchable",
+    "typescript",
+    "component"
+  ],
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "peerDependencies": {
-    "react": "^17.0.0 || ^18.0.0",  
+    "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
   },
   "devDependencies": {
-    "typescript": "^5.0.0",            
-    "@types/react": "^18.0.0",         
-    "@types/react-dom": "^18.0.0"    
+    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-typescript": "^12.1.1",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "rollup": "^4.24.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "sass": "^1.80.4",
+    "typescript": "^5.6.3"
   },
-  "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
-  },
-  "files": ["dist"],
+  "files": [
+    "dist",
+    "src/styles/styles.scss"
+  ],
   "engines": {
     "node": ">=14.0.0"
   }
 }
-
-
