@@ -17,7 +17,7 @@
       "types": ["react", "node"],      // Include React and Node types
       "lib": ["dom", "dom.iterable", "esnext"] // Add DOM and ESNext library support
     },
-    "include": ["src/**/*"],            // Include all TypeScript files in the src directory
+    "include": ["src/**/*", "src/**/*.css","src/**/*.scss"],            // Include all TypeScript files in the src directory
     "exclude": ["node_modules", "dist"] // Exclude build and dependency directories
   }
   
